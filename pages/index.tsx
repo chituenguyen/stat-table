@@ -82,16 +82,14 @@ const IndexPage = () => {
     minApps,
     accumulation
   ); // Use the custom hook
-  const {
-    data: apiResponseDetail,
-    isLoading: loadingDetail,
-  } = useTournamentStatisticsDetail(
-    page,
-    fields,
-    filter,
-    accumulationDetail,
-    order
-  );
+  const { data: apiResponseDetail, isLoading: loadingDetail } =
+    useTournamentStatisticsDetail(
+      page,
+      fields,
+      filter,
+      accumulationDetail,
+      order
+    );
   const { data: apiTeamAndNation, isLoading: loadingTeamAnndNation } =
     useTeamAndNation(); // customize hook
   const handleColumnClick = (header: string) => {
@@ -239,7 +237,7 @@ const IndexPage = () => {
                     id="demo-simple-select"
                     value={accumulation}
                     onChange={handleChangeAccumulator}
-                    sx={{ fontSize: "12px", height: 30, width:170 }}
+                    sx={{ fontSize: "12px", height: 30, width: 170 }}
                   >
                     {Acumalation.map((item, index) => (
                       <MenuItem
@@ -338,6 +336,7 @@ const IndexPage = () => {
                   ? apiResponseDetail?.data.results.map(
                       (row: any, id: number) => (
                         <TableRow
+                          key={id}
                           index={id}
                           row={row}
                           columns={columnDetail.data}
@@ -346,6 +345,7 @@ const IndexPage = () => {
                     )
                   : apiResponse?.data.results.map((row: any, id: number) => (
                       <TableRow
+                        key={id}
                         index={id}
                         row={row}
                         columns={selectedColumns}

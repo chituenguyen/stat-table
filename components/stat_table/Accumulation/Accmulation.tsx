@@ -1,6 +1,6 @@
 import OptionButton from "../share/OptionButton";
 
-export default function ({clear}:{clear:boolean}) {
+export default function Accmulation ({clear}:{clear:boolean}) {
   const Appearances = [
     {
       label: "Total",

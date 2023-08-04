@@ -1,6 +1,6 @@
 import OptionButton from "../share/OptionButton";
 
-export default function ({clear}:{clear:boolean}) {
+export default function PreferredFoot ({clear}:{clear:boolean}) {
   const PreferredFoot = [
     {
       label: "All",

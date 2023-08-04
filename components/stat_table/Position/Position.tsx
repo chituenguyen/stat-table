@@ -1,7 +1,7 @@
 import position from "../../../const/Position";
 import CheckboxInputNew from "./CheckBoxNew";
 
-export default function () {
+export default function Position () {
   return (
     <div className="flex gap-2">
       Position

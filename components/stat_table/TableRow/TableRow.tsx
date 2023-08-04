@@ -7,6 +7,7 @@ type Column = {
 };
 
 type Props = {
+  key?:number;
   index: number;
   row: any;
   columns: Column[];

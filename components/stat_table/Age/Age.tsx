@@ -7,7 +7,7 @@ const Appearances = [
   { label: "Less than", value: "LT" },
 ];
 
-export default function ({clear}:{clear:boolean}) {
+export default function Age ({clear}:{clear:boolean}) {
   return (
     <div className="flex gap-2 items-center">
       Age

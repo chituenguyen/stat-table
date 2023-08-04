@@ -1,6 +1,6 @@
 import RadioInput from "./RaidoInput";
 
-export default function () {
+export default function TypeEQ() {
   return (
     <div className="flex gap-2 items-center">
       <RadioInput label="Overall" value="o" />
