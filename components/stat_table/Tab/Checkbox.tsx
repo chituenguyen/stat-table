@@ -3,6 +3,7 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 
 interface CheckboxInputProps {
+  index? : number;
   label: string;
   name: string;
   initialData?: any;
@@ -11,6 +12,7 @@ interface CheckboxInputProps {
 }
 
 const CheckboxInput: React.FC<CheckboxInputProps> = ({
+  index,
   label,
   name,
   initialData,
@@ -31,7 +33,7 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
   };
 
   return (
-    <label className="flex items-center gap-1">
+    <label className="flex items-center gap-1" key={index}>
       <input
         type="checkbox"
         {...register(name)}

@@ -80,8 +80,9 @@ const Tab: React.FC<TabProps> = ({
               activeTab === tab.id ? "max-h-fit" : "max-h-0"
             } overflow-hidden`}
           >
-            {tab.data.map((item) => (
+            {tab.data.map((item, index) => (
               <CheckboxInput
+                key={index}
                 label={item.header}
                 name={item.accessorKey}
                 initialData={initialData}

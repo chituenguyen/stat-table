@@ -50,7 +50,7 @@ const TableRow: React.FC<Props> = ({ index, row, columns }) => {
             ) : column.header === "Team" ? (
               <img
                 src={`https://apisf.p2pcdn.xyz/api/v1/team/${cellData}/image`}
-                className="w-5 h-5 align-middle"
+                className="w-5 h-5 my-2"
                 alt="Team flag"
               ></img>
             ) : (
