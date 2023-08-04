@@ -2,10 +2,10 @@ import React from "react";
 import Rectangle from "../../skeleton/Rectangle/Rectangle";
 import Circle from "../../skeleton/circle/Circle";
 
-function TableRowLoading({ key, numberColumn }) {
+function TableRowLoading({ numberColumn, number }) {
 
   return (
-    <tr className="h-[50px] border-[#cddede] border-x border-y" key={key}>
+    <tr className="h-[50px] border-[#cddede] border-x border-y" key={number}>
       {Array.from({ length: numberColumn }, (_, index) => index + 1).map(
         (index) => {
           if (index === 2) {

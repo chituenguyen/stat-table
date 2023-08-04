@@ -330,7 +330,13 @@ const IndexPage = () => {
             <tbody>
               {Array.from({ length: 20 }, (_, index) => index + 1).map(
                 (number) => (
-                  <TableRowLoading key={number} numberColumn = {group==="Detailed" ? columnDetail.data.length : 9}/>
+                  <TableRowLoading
+                    key={number}
+                    number={number}
+                    numberColumn={
+                      group === "Detailed" ? columnDetail.data.length : 9
+                    }
+                  />
                 )
               )}
             </tbody>
@@ -359,28 +365,32 @@ const IndexPage = () => {
           )}
         </table>
         {/* pagination  */}
-        {/* <Stack spacing={2} className="mt-3">
-              <Pagination
-                count={
-                  group === "Detailed"
-                    ? apiResponseDetail?.data.pages
-                    : apiResponse?.data.pages
-                }
-                page={page}
-                onChange={handleChange}
-                renderItem={(item) => (
-                  <PaginationItem
-                    {...item}
-                    sx={{
-                      "&.Mui-selected": {
-                        backgroundColor: "#2187E5",
-                        color: "white",
-                      },
-                    }}
-                  />
-                )}
-              />
-            </Stack> */}
+        {isLoading || loadingDetail ? (
+          <></>
+        ) : (
+          <Stack spacing={2} className="mt-3">
+            <Pagination
+              count={
+                group === "Detailed"
+                  ? apiResponseDetail?.data.pages
+                  : apiResponse?.data.pages
+              }
+              page={page}
+              onChange={handleChange}
+              renderItem={(item) => (
+                <PaginationItem
+                  {...item}
+                  sx={{
+                    "&.Mui-selected": {
+                      backgroundColor: "#2187E5",
+                      color: "white",
+                    },
+                  }}
+                />
+              )}
+            />
+          </Stack>
+        )}
       </div>
       <ToastContainer
         position="bottom-center"
