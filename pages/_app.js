@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { ReactQueryProvider } from "./ReactQueryProvideer";
+import { ReactQueryProvider } from "../const/ReactQueryProvideer";
 
 function MyApp({ Component, pageProps }) {
   return (
