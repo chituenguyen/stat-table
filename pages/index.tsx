@@ -35,6 +35,7 @@ import ShowNationality from "../components/stat_table/Nationality/ShowNationalit
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import TableRowLoading from "../components/stat_table/TableRow/TableRowLoading";
 
 interface InitialData {
   data: Array<{
@@ -312,49 +313,53 @@ const IndexPage = () => {
           </FormProvider>
         ) : null}
 
-        {isLoading || loadingDetail ? (
-          <Box className="w-full h-full flex-1 flex justify-center items-center">
-            <CircularProgress />
-          </Box>
-        ) : (
-          <>
-            {/* table  */}
-            <table className="">
-              <thead>
-                <HeaderRow
-                  group={group}
-                  columnDetail={columnDetail}
-                  selectedColumns={selectedColumns}
-                  sorted={sorted}
-                  handleColumnClick={handleColumnClick}
-                  order={order}
-                  handleColumnDetailClick={handleColumnDetailClick}
-                />
-              </thead>
-              <tbody>
-                {group === "Detailed"
-                  ? apiResponseDetail?.data.results.map(
-                      (row: any, id: number) => (
-                        <TableRow
-                          key={id}
-                          index={id}
-                          row={row}
-                          columns={columnDetail.data}
-                        />
-                      )
-                    )
-                  : apiResponse?.data.results.map((row: any, id: number) => (
+        {/* table  */}
+        <table className="">
+          <thead>
+            <HeaderRow
+              group={group}
+              columnDetail={columnDetail}
+              selectedColumns={selectedColumns}
+              sorted={sorted}
+              handleColumnClick={handleColumnClick}
+              order={order}
+              handleColumnDetailClick={handleColumnDetailClick}
+            />
+          </thead>
+          {isLoading || loadingDetail ? (
+            <tbody>
+              {Array.from({ length: 20 }, (_, index) => index + 1).map(
+                (number) => (
+                  <TableRowLoading key={number} numberColumn = {group==="Detailed" ? columnDetail.data.length : 9}/>
+                )
+              )}
+            </tbody>
+          ) : (
+            <tbody>
+              {group === "Detailed"
+                ? apiResponseDetail?.data.results.map(
+                    (row: any, id: number) => (
                       <TableRow
                         key={id}
                         index={id}
                         row={row}
-                        columns={selectedColumns}
+                        columns={columnDetail.data}
                       />
-                    ))}
-              </tbody>
-            </table>
-            {/* pagination  */}
-            <Stack spacing={2} className="mt-3">
+                    )
+                  )
+                : apiResponse?.data.results.map((row: any, id: number) => (
+                    <TableRow
+                      key={id}
+                      index={id}
+                      row={row}
+                      columns={selectedColumns}
+                    />
+                  ))}
+            </tbody>
+          )}
+        </table>
+        {/* pagination  */}
+        {/* <Stack spacing={2} className="mt-3">
               <Pagination
                 count={
                   group === "Detailed"
@@ -375,9 +380,7 @@ const IndexPage = () => {
                   />
                 )}
               />
-            </Stack>
-          </>
-        )}
+            </Stack> */}
       </div>
       <ToastContainer
         position="bottom-center"

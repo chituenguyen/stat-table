@@ -32,6 +32,11 @@ module.exports = {
         custom: "0 1px 8px 2px rgba(34, 34, 38, 0.08)", // Add your custom box shadow here
       },
     },
+    keyframes: {
+      shimmer: {
+        '100%' : {transform: 'translateX(100%)'}
+      }
+    }
   },
   plugins: [],
 };
