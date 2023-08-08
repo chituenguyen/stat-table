@@ -1,11 +1,10 @@
 // ShowTeam.jsx
 import React from "react";
 import InputCheckbox from "../share/InputCheckbox";
-import Team from "../../../const/Team";
-import { useOpen } from "../../../hooks/useOpenTeamAndNation";
+import useOpenTeamStore from "../../../store/useOpenTeamStore";
 
 function ShowTeam(teams: any) {
-  const { openTeam } = useOpen();
+  const {openTeam} = useOpenTeamStore()
 
   return (
     <div className={`${openTeam ? "block" : "hidden"} mt-2 bg-surface-1 p-3 rounded-lg`}>

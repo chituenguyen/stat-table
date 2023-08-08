@@ -1,10 +1,12 @@
 // ShowTeam.jsx
 import React from "react";
 import InputCheckbox from "../share/InputCheckbox";
-import { useOpen } from "../../../hooks/useOpenTeamAndNation";
+import useOpenNationStore from "../../../store/useOpenNationStore";
+
 
 function ShowNationality(nation:any) {
-  const { openNation } = useOpen();
+  // const { openNation } = useOpen();
+  const {openNation} = useOpenNationStore()
   const Nationality = Object.entries(nation.nation).map(([id, name]) => ({
     name,
     id,

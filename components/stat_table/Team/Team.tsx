@@ -1,19 +1,20 @@
 // Team.jsx
 import React, { useEffect } from "react";
-import { useOpen } from "../../../hooks/useOpenTeamAndNation";
 import { useFormContext } from "react-hook-form";
+import useOpenTeamStore from "../../../store/useOpenTeamStore";
 
 function Team({ clear }: { clear: boolean }) {
-  const { updateValueTeam } = useOpen();
+  // const { updateValueTeam } = useOpen();
+  const{changeOpenTeam} = useOpenTeamStore()
   const methods = useFormContext();
   const {register} = useFormContext();
 
   useEffect(() => {
     if (methods.watch("teamoption") === "allteam") {
-      updateValueTeam(false);
+      changeOpenTeam(false);
     }
     if (methods.watch("teamoption") === "chooseteam") {
-      updateValueTeam(true);
+      changeOpenTeam(true);
     }
   }, [methods]);
 

@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
-import { useOpen } from "../../../hooks/useOpenTeamAndNation";
 import { Controller, useFormContext } from "react-hook-form";
+import useOpenNationStore from "../../../store/useOpenNationStore";
 
 function Nationality({ clear }: { clear: boolean }) {
-  const { updateValueNation } = useOpen();
+  // const { updateValueNation } = useOpen();
+  const {changeOpennation} = useOpenNationStore()
   const methods = useFormContext();
   const {register} = useFormContext();
 
   useEffect(() => {
     if (methods.watch("nationalityoption") === "allnation") {
-      updateValueNation(false);
+      changeOpennation(false);
     }
     if (methods.watch("nationalityoption") === "choosenation") {
-      updateValueNation(true);
+      changeOpennation(true);
     }
   }, [methods]);
   return (

@@ -10,7 +10,6 @@ import Acumalation from "./../const/Acumulation";
 import minAppOptions from "./../const/minApp";
 import {
   Box,
-  CircularProgress,
   FormControl,
   MenuItem,
   PaginationItem,
@@ -30,10 +29,9 @@ import Nationality from "../components/stat_table/Nationality/Nationality";
 import HeaderRow from "../components/stat_table/HeaderTable/HeaderTable";
 import TableRow from "../components/stat_table/TableRow/TableRow";
 import ShowTeam from "../components/stat_table/Team/ShowTeam";
-import { OpenProvider } from "./../hooks/useOpenTeamAndNation";
 import ShowNationality from "../components/stat_table/Nationality/ShowNationality";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TableRowLoading from "../components/stat_table/TableRow/TableRowLoading";
 
@@ -271,7 +269,6 @@ const IndexPage = () => {
                 <Position />
                 <PreferredFoot clear={clearFilter} />
               </div>
-              <OpenProvider>
                 <div>
                   <div className="flex justify-between">
                     <Nationality clear={clearFilter} />
@@ -288,7 +285,6 @@ const IndexPage = () => {
                     </>
                   )}
                 </div>
-              </OpenProvider>
               <Tab
                 tabs={groupType}
                 initialData={initialData}

@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import CheckboxInputNew from "../Position/CheckBoxNew";
-import { useOpen } from "../../../hooks/useOpenTeamAndNation";
+import useOpenNationStore from "../../../store/useOpenNationStore";
+import useOpenTeamStore from "../../../store/useOpenTeamStore";
 
 type Option = {
   [key: string]: any; // Allow any other additional properties
@@ -18,7 +19,8 @@ const OptionButton: React.FC<Props> = ({ options, name, label }) => {
   const { setValue } = useFormContext();
   const [selectAll, setSelectAll] = useState(false);
   const [checkboxes, setCheckboxes] = useState<string[]>([]);
-  const { openNation, openTeam } = useOpen();
+  const {openNation} = useOpenNationStore()
+  const {openTeam} = useOpenTeamStore();
 
 
   const handleSelectAll = () => {
