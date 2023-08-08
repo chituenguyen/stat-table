@@ -1,3 +1,4 @@
+import { useTheme } from "next-themes";
 import OptionButton from "../share/OptionButton";
 
 export default function Accmulation ({clear}:{clear:boolean}) {
@@ -15,8 +16,9 @@ export default function Accmulation ({clear}:{clear:boolean}) {
       value: "per90",
     },
   ];
+  const {resolvedTheme} = useTheme()
   return (
-    <div className="flex items-center gap-2">
+    <div className={`flex items-center gap-2 ${resolvedTheme === "dark"?"text-[#aaa]":""}`}>
       Accumulation
       <OptionButton options={Appearances} name="accumulation" clear={clear}/>
     </div>

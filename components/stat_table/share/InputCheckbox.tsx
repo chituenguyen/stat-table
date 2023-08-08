@@ -4,6 +4,7 @@ import { useFormContext } from "react-hook-form";
 import CheckboxInputNew from "../Position/CheckBoxNew";
 import useOpenNationStore from "../../../store/useOpenNationStore";
 import useOpenTeamStore from "../../../store/useOpenTeamStore";
+import { useTheme } from "next-themes";
 
 type Option = {
   [key: string]: any; // Allow any other additional properties
@@ -66,9 +67,9 @@ const OptionButton: React.FC<Props> = ({ options, name, label }) => {
 
     setValue(name, checkboxes);
   }, [openNation,openTeam]);
-
+  const {resolvedTheme} = useTheme()
   return (
-    <div className="w-full">
+    <div className={`w-full ${resolvedTheme === "dark"?"text-[#aaa]":""}`}>
       <div className="flex justify-between">
         <p>{label}</p>
         <div className="flex items-center gap-3">

@@ -30,12 +30,12 @@ const HeaderRow: React.FC<Props> = ({
   const { resolvedTheme } = useTheme();
 
   return (
-    <tr className={`${resolvedTheme === "dark"?"bg-[#181D26] border-[#696f75]":"bg-surface-1 border-white "}`}>
+    <tr className={`${resolvedTheme === "dark"?"bg-[#181D26] border-[#696f75] border-opacity-30":"bg-surface-1 border-white "}`}>
       {group === "Detailed"
         ? columnDetail.data.map((column: Column, id: number) => (
             <th
               key={id}
-              className={`relative border border-solid ${resolvedTheme === "dark"?"text-gray-400 border-[#696f75]":"text-basic border-[#CDDDED]"} text-xs not-italic leading-4 font-medium ${
+              className={`relative border border-solid ${resolvedTheme === "dark"?"text-gray-400 border-[#696f75] border-opacity-30":"text-[#555] border-[#CDDDED]"} text-xs not-italic leading-4 font-bold ${
                 column.accessorKey === "player.name" ? "px-2" : "px-4"
               } py-4   ${
                 id === 1 ? "text-start px-0" : ""
@@ -79,7 +79,7 @@ const HeaderRow: React.FC<Props> = ({
         : selectedColumns.map((column: Column, id: number) => (
             <th
               key={id}
-              className={`relative ${resolvedTheme === "dark"?"text-gray-400 border-[#696f75]":"text-basic border-[#CDDDED]"} text-xs not-italic leading-4 font-medium ${
+              className={`relative ${resolvedTheme === "dark"?"text-gray-400 border-[#696f75] border-opacity-30":"text-[#555] border-[#CDDDED]"} text-xs not-italic leading-4 font-semibold ${
                 column.accessorKey === "player.name" ? "px-2" : "px-4"
               } py-4 border-y border-x  ${
                 id === 1 ? "text-start px-0" : ""
@@ -101,7 +101,7 @@ const HeaderRow: React.FC<Props> = ({
                     width="16"
                     height="16"
                     viewBox="0 0 16 16"
-                    className={`absolute bottom-0${
+                    className={`absolute bottom-0 ${
                       column.accessorKey === sorted ? "rotate-180" : ""
                     }`}
                   >
@@ -110,7 +110,7 @@ const HeaderRow: React.FC<Props> = ({
                         column.accessorKey === sorted ||
                         "-" + column.accessorKey === sorted
                           ? "#2187E5"
-                          : ""
+                          : "#41464D"
                       }`}
                       d="M13 5H3l5 8z"
                       fillRule="evenodd"

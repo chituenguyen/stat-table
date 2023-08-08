@@ -2,12 +2,14 @@
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import useOpenTeamStore from "../../../store/useOpenTeamStore";
+import { useTheme } from "next-themes";
 
 function Team({ clear }: { clear: boolean }) {
   // const { updateValueTeam } = useOpen();
   const{changeOpenTeam} = useOpenTeamStore()
   const methods = useFormContext();
   const {register} = useFormContext();
+  const {resolvedTheme} = useTheme()
 
   useEffect(() => {
     if (methods.watch("teamoption") === "allteam") {
@@ -20,7 +22,7 @@ function Team({ clear }: { clear: boolean }) {
 
   return (
     <div>
-      <div className="flex items-center gap-2 hover:cursor-pointer">
+      <div className={`flex items-center gap-2 hover:cursor-pointer ${resolvedTheme === "dark"?"text-[#aaa]":""}`}>
         <p>Team</p>
         <div className="flex items-center gap-2">
         <label
@@ -43,7 +45,7 @@ function Team({ clear }: { clear: boolean }) {
             }}
             checked={methods.getValues("teamoption") === "allteam"}
             value={"allteam"}
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer accent-[#2187E5]"
           />
           All
         </label>
@@ -61,7 +63,7 @@ function Team({ clear }: { clear: boolean }) {
             }}
             checked={methods.getValues("teamoption") === "chooseteam"}
             value={"chooseteam"}
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer accent-[#2187E5]"
           />
           Choose
         </label>

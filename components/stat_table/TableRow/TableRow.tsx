@@ -28,7 +28,9 @@ const TableRow: React.FC<Props> = ({ index, row, columns }) => {
           : index % 2 !== 1 && resolvedTheme === "light"
           ? "bg-white"
           : "bg-[#1C2632]"
-      } ${resolvedTheme === "dark"?"border-[#696f75]":"border-[#cdded]"} border-x border-y`}
+      } ${
+        resolvedTheme === "dark" ? "border-[#696f75] border-opacity-30" : "border-[#cddded]"
+      } border-x border-y`}
     >
       {columns.map((column) => {
         const accessorKeys = column.accessorKey.split("."); // Split the accessorKey by '.' to access nested properties
@@ -45,23 +47,25 @@ const TableRow: React.FC<Props> = ({ index, row, columns }) => {
               column.accessorKey === "player.name"
                 ? "text-start px-2"
                 : "text-center"
+            }  ${
+              resolvedTheme === "dark" ? "text-gray-400" : "text-[#555]"
+            } text-xs font-normal py-2 leading-smc border-r ${
+              resolvedTheme === "dark" ? "border-[#696f75] border-opacity-30" : "border-[#cddded]"
+            } ${
+              column.accessorKey === "team.id" ? "flex justify-center" : ""
             } ${
               column.accessorKey === "rating"
                 ? cellData >= 9
-                  ? "text-[#3498DB]"
+                  ? "!text-[#3498DB] !font-bold"
                   : cellData >= 8
-                  ? "text-[#47C152]"
+                  ? "!text-[#47C152] !font-bold"
                   : cellData >= 7
-                  ? "text-[#A2B719]"
+                  ? "!text-[#A2B719] !font-bold"
                   : cellData >= 6
-                  ? "text-[#D8B62A]"
-                  : "text-[#FA5151]"
+                  ? "!text-[#D8B62A] !font-bold"
+                  : "!text-[#FA5151] !font-bold"
                 : ""
-            } ${
-              resolvedTheme === "dark" ? "text-gray-400" : "text-basic"
-            } text-xs font-normal py-2 leading-smc border-r ${resolvedTheme === "dark"?"border-[#696f75]":"border-[#cdded]"} ${
-              column.accessorKey === "team.id" ? "flex justify-center" : ""
-            } `}
+            }`}
           >
             {column.accessorKey === "player.id" && column.header === "ID" ? (
               index + 1

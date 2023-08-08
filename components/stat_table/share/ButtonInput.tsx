@@ -54,8 +54,8 @@ const ButtonInput: React.FC<Props> = ({ options, name, value, clear }) => {
                   sx={{
                     fontSize: 12,
                     height: 30,
-                    border: resolvedTheme === "dark" ? "1px solid white" : "",
-                    color: resolvedTheme === "dark" ? "white" : "",
+                    border: resolvedTheme === "dark" ? "1px solid #555" : "",
+                    color: resolvedTheme === "dark" ? "#aaa" : "",
                   }}
                 >
                   {options.map((item) => (
@@ -73,7 +73,7 @@ const ButtonInput: React.FC<Props> = ({ options, name, value, clear }) => {
             <input
               type="text"
               {...register(value)}
-              className="border w-[70px] px-2"
+              className={`border w-[70px] px-2 ${resolvedTheme === "dark"?"border-[#555]":""}`}
               disabled={appearances === "a" || appearances === undefined}
             />
           </div>

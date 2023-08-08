@@ -21,13 +21,13 @@
     @apply max-w-[1440px] mx-auto;
   }
   .button {
-    @apply py-2 px-3 rounded-sm bg-surface-1 text-[#222226] text-xs;
+    @apply py-2 px-3  bg-surface-1 text-[#222226] text-xs rounded-lg;
   }
   .button-dark {
-    @apply py-2 px-3 rounded-sm  text-white text-xs;
+    @apply py-2 px-3   text-[#aaa] text-xs rounded-lg bg-black;
   }
   .button-active{
-    @apply py-2 px-3 rounded-sm bg-[#2187E5] text-xs border-[1px] border-solid text-white;
+    @apply py-2 px-3  bg-[#2187E5] text-xs border-solid text-white rounded-lg;
   }
   .bg1{
     @apply bg-[#222226] bg-opacity-[0.4];
@@ -36,7 +36,7 @@
     @apply bg-[#a4a9b3] py-[2px] px-2 mt-3 rounded-lg text-xs;
   }
   .buttonTab{
-    @apply text-xsm text-black px-2 py-1;
+    @apply text-xsm text-black px-2 py-1 rounded-lg;
   }
   .buttonTab-active{
     @apply bg-[#374DF526] text-xsm text-white bg-[#2187E5]  px-2 py-[2px] rounded-lg;

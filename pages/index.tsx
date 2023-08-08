@@ -196,7 +196,7 @@ const IndexPage = () => {
         </div>
         <div
           className={`flex items-center pb-3.5 border-b gap-2 ${
-            resolvedTheme === "dark" ? "border-[#696f75]" : "border-[#cdded]"
+            resolvedTheme === "dark" ? "border-[#696f75] border-opacity-30" : "border-[#cddded]"
           }`}
         >
           {columns.map((item) => (
@@ -232,9 +232,14 @@ const IndexPage = () => {
                     name="minApps"
                     checked={minApps === item.value}
                     onChange={() => handleChangeMinApps(item.value)}
-                    className="hover:cursor-pointer w-5 h-5"
+                    className="hover:cursor-pointer w-5 h-5 accent-[#2187E5]"
                   />
-                  <label htmlFor={item.value} className="hover:cursor-pointer">
+                  <label
+                    htmlFor={item.value}
+                    className={`hover:cursor-pointer ${
+                      resolvedTheme === "dark" ? "text-[#aaa]" : "text-black"
+                    }`}
+                  >
                     {item.label}
                   </label>
                 </div>
@@ -242,7 +247,13 @@ const IndexPage = () => {
             </form>
             {/* accumulation */}
             <div className="flex items-center text-xsm font-normal leading-4 gap-3.5 relative">
-              <p>Accumulation</p>
+              <p
+                className={`${
+                  resolvedTheme === "dark" ? "text-[#aaa]" : "text-black"
+                }`}
+              >
+                Accumulation
+              </p>
               <Box sx={{ minWidth: 100, fontSize: "12px" }}>
                 <FormControl fullWidth>
                   <Select
@@ -254,8 +265,9 @@ const IndexPage = () => {
                       fontSize: "12px",
                       height: 30,
                       width: 170,
-                      border: resolvedTheme === "dark" ? "1px solid white" : "",
-                      color: resolvedTheme === "dark" ? "white" : "",
+                      border: resolvedTheme === "dark" ? "1px solid #555" : "",
+                      color: resolvedTheme === "dark" ? "#555" : "",
+                      backgroundColor: resolvedTheme === "dark" ? "#000" : "",
                     }}
                   >
                     {Acumalation.map((item, index) => (
@@ -397,16 +409,17 @@ const IndexPage = () => {
                 <PaginationItem
                   {...item}
                   sx={{
+                    "&.MuiPaginationItem-root": {
+                      color: resolvedTheme === "dark" ? "#555" : "",
+                    },
+                    "&.MuiPaginationItem-page": {
+                      color: resolvedTheme === "dark" ? "#555" : "",
+                    },
                     "&.Mui-selected": {
                       backgroundColor: "#2187E5",
                       color: "white",
                     },
-                    "&.MuiPaginationItem-page": {
-                      color: resolvedTheme === "dark" ? "white" : "",
-                    },
-                    "&.MuiPaginationItem-root": {
-                      color: resolvedTheme === "dark" ? "white" : "",
-                    },
+                    
                   }}
                 />
               )}

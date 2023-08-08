@@ -49,8 +49,8 @@ export default function OptionButton({ options, name, clear }: OptionButtonProps
                   handleChange(e);
                   field.onChange(e.target.value); // Update the value in the Controller's field
                 }}
-                sx={{fontSize:12, height:30,border: resolvedTheme === "dark" ? "1px solid white" : "",
-                color: resolvedTheme === "dark" ? "white" : "",}}
+                sx={{fontSize:12, height:30,border: resolvedTheme === "dark" ? "1px solid #555" : "",
+                color: resolvedTheme === "dark" ? "#aaa" : "",}}
               >
                 {options.map((item) => (
                   <MenuItem key={item.value} value={item.value} sx={{fontSize:"12px"}}>
