@@ -1,4 +1,5 @@
 // TableRow.tsx
+import { useTheme } from "next-themes";
 import React from "react";
 
 type Column = {
@@ -7,17 +8,27 @@ type Column = {
 };
 
 type Props = {
-  key?:number;
+  key?: number;
   index: number;
   row: any;
   columns: Column[];
 };
 
 const TableRow: React.FC<Props> = ({ index, row, columns }) => {
+  const { resolvedTheme } = useTheme();
+
   return (
     <tr
       key={index}
-      className={`text-center ${index % 2 === 1 ? "bg-surface-1" : ""} border-[#cdded] border-x border-y`}
+      className={`text-center ${
+        index % 2 === 1 && resolvedTheme === "light"
+          ? "bg-surface-1"
+          : index % 2 === 1 && resolvedTheme !== "light"
+          ? "bg-[#181D26]"
+          : index % 2 !== 1 && resolvedTheme === "light"
+          ? "bg-white"
+          : "bg-[#1C2632]"
+      } ${resolvedTheme === "dark"?"border-[#696f75]":"border-[#cdded]"} border-x border-y`}
     >
       {columns.map((column) => {
         const accessorKeys = column.accessorKey.split("."); // Split the accessorKey by '.' to access nested properties
@@ -31,7 +42,9 @@ const TableRow: React.FC<Props> = ({ index, row, columns }) => {
           <td
             key={column.accessorKey}
             className={`${
-              column.accessorKey === "player.name" ? "text-start px-2" : "text-center"
+              column.accessorKey === "player.name"
+                ? "text-start px-2"
+                : "text-center"
             } ${
               column.accessorKey === "rating"
                 ? cellData >= 9
@@ -44,7 +57,11 @@ const TableRow: React.FC<Props> = ({ index, row, columns }) => {
                   ? "text-[#D8B62A]"
                   : "text-[#FA5151]"
                 : ""
-            } text-basic text-xs font-normal py-2 leading-smc border-r border-[#CDDDED] ${column.accessorKey === "team.id"?"flex justify-center":""} `}
+            } ${
+              resolvedTheme === "dark" ? "text-gray-400" : "text-basic"
+            } text-xs font-normal py-2 leading-smc border-r ${resolvedTheme === "dark"?"border-[#696f75]":"border-[#cdded]"} ${
+              column.accessorKey === "team.id" ? "flex justify-center" : ""
+            } `}
           >
             {column.accessorKey === "player.id" && column.header === "ID" ? (
               index + 1

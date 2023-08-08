@@ -1,11 +1,14 @@
 import "../styles/globals.css";
 import { ReactQueryProvider } from "../const/ReactQueryProvideer";
+import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ReactQueryProvider>
-      <Component {...pageProps} />
-    </ReactQueryProvider>
+    <ThemeProvider attribute="class">
+      <ReactQueryProvider>
+        <Component {...pageProps} />
+      </ReactQueryProvider>
+    </ThemeProvider>
   );
 }
 

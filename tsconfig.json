@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "store/useOpenTeamStore.js"  ],
+, "store/useOpenTeamStore.tsx"  ],
   "exclude": [
     "node_modules"
   ]

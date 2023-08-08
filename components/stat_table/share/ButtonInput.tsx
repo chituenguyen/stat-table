@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useTheme } from "next-themes";
 
 type Option = {
   label: string;
@@ -13,7 +14,7 @@ type Props = {
   options: Option[];
   name: string;
   value: string;
-  clear? : boolean;
+  clear?: boolean;
 };
 
 const ButtonInput: React.FC<Props> = ({ options, name, value, clear }) => {
@@ -24,12 +25,14 @@ const ButtonInput: React.FC<Props> = ({ options, name, value, clear }) => {
     const selectedValue = event.target.value as string;
     setAge(selectedValue); // Keep the local state up to date (optional, if you want to display the selected label in the UI)
   };
-  useEffect(()=>{
-    if(clear){
+  useEffect(() => {
+    if (clear) {
       setAge(options[0].value);
     }
-  },[clear])
+  }, [clear]);
   const appearances = useWatch({ name: name });
+  const { resolvedTheme } = useTheme();
+
   return (
     <div>
       <Controller
@@ -48,10 +51,19 @@ const ButtonInput: React.FC<Props> = ({ options, name, value, clear }) => {
                     handleChange(e);
                     field.onChange(e.target.value); // Update the value in the Controller's field
                   }}
-                  sx={{fontSize:12, height:30}}
+                  sx={{
+                    fontSize: 12,
+                    height: 30,
+                    border: resolvedTheme === "dark" ? "1px solid white" : "",
+                    color: resolvedTheme === "dark" ? "white" : "",
+                  }}
                 >
                   {options.map((item) => (
-                    <MenuItem key={item.value} value={item.value} sx={{fontSize:12}}>
+                    <MenuItem
+                      key={item.value}
+                      value={item.value}
+                      sx={{ fontSize: 12 }}
+                    >
                       {item.label}
                     </MenuItem>
                   ))}

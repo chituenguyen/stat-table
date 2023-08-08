@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import CheckboxInput from "./Checkbox";
 import { toast } from "react-toastify";
+import { useTheme } from "next-themes";
 
 interface TabItem {
   id: number;
@@ -56,15 +57,17 @@ const Tab: React.FC<TabProps> = ({
       onInitialDataChange(newData);
     }
   };
+  const { resolvedTheme } = useTheme();
+
   return (
-    <div className="bg-surface-1 p-3">
+    <div className={`${resolvedTheme === "dark" ? "bg-[#181D26]" : "bg-surface-1"} p-3`}>
       <div className="flex gap-3">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             className={`${
               activeTab === tab.id ? "buttonTab-active" : "buttonTab"
-            }`}
+            } ${resolvedTheme === "dark"?"text-white":""}`}
             onClick={() => handleTabChange(tab.id)}
             type="button"
           >
@@ -72,7 +75,7 @@ const Tab: React.FC<TabProps> = ({
           </button>
         ))}
       </div>
-      <div className="p-4 bg-surface-1 rounded-b-md mt-4 text-xsm">
+      <div className={`p-4 ${resolvedTheme === "dark" ? "bg-[#181D26]" : "bg-surface-1"} rounded-b-md mt-4 text-xsm`}>
         {tabs.map((tab) => (
           <div
             key={tab.id}

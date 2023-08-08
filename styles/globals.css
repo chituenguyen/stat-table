@@ -23,8 +23,11 @@
   .button {
     @apply py-2 px-3 rounded-sm bg-surface-1 text-[#222226] text-xs;
   }
+  .button-dark {
+    @apply py-2 px-3 rounded-sm  text-white text-xs;
+  }
   .button-active{
-    @apply py-2 px-3 rounded-sm bg-[#2187E5] text-[#222226] text-xs border-[1px] border-solid text-white;
+    @apply py-2 px-3 rounded-sm bg-[#2187E5] text-xs border-[1px] border-solid text-white;
   }
   .bg1{
     @apply bg-[#222226] bg-opacity-[0.4];

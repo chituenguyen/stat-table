@@ -1,4 +1,5 @@
 // HeaderRow.tsx
+import { useTheme } from "next-themes";
 import React from "react";
 
 type Column = {
@@ -26,15 +27,17 @@ const HeaderRow: React.FC<Props> = ({
   order,
   handleColumnDetailClick,
 }) => {
+  const { resolvedTheme } = useTheme();
+
   return (
-    <tr className="bg-surface-1">
+    <tr className={`${resolvedTheme === "dark"?"bg-[#181D26] border-[#696f75]":"bg-surface-1 border-white "}`}>
       {group === "Detailed"
         ? columnDetail.data.map((column: Column, id: number) => (
             <th
               key={id}
-              className={`text-basic text-xs font-bold not-italic leading-4 ${
+              className={`relative border border-solid ${resolvedTheme === "dark"?"text-gray-400 border-[#696f75]":"text-basic border-[#CDDDED]"} text-xs not-italic leading-4 font-medium ${
                 column.accessorKey === "player.name" ? "px-2" : "px-4"
-              } py-2 border-solid border-[#2187E5] ${
+              } py-4   ${
                 id === 1 ? "text-start px-0" : ""
               } ${column.sorted ? "hover:cursor-pointer" : "cursor-auto"}`}
               onClick={() => handleColumnDetailClick(column.accessorKey)}
@@ -52,7 +55,7 @@ const HeaderRow: React.FC<Props> = ({
                     width="16"
                     height="16"
                     viewBox="0 0 16 16"
-                    className={`${
+                    className={`absolute bottom-0 ${
                       column.accessorKey === order ? "rotate-180" : ""
                     }`}
                   >
@@ -76,9 +79,9 @@ const HeaderRow: React.FC<Props> = ({
         : selectedColumns.map((column: Column, id: number) => (
             <th
               key={id}
-              className={`text-basic text-xs font-bold not-italic leading-4 ${
+              className={`relative ${resolvedTheme === "dark"?"text-gray-400 border-[#696f75]":"text-basic border-[#CDDDED]"} text-xs not-italic leading-4 font-medium ${
                 column.accessorKey === "player.name" ? "px-2" : "px-4"
-              } py-2 border-y border-x border-[#CDDDED] ${
+              } py-4 border-y border-x  ${
                 id === 1 ? "text-start px-0" : ""
               } sorted:${column.sorted ? "true" : "false"} ${
                 column.sorted ? "hover:cursor-pointer" : "cursor-auto"
@@ -98,7 +101,7 @@ const HeaderRow: React.FC<Props> = ({
                     width="16"
                     height="16"
                     viewBox="0 0 16 16"
-                    className={`${
+                    className={`absolute bottom-0${
                       column.accessorKey === sorted ? "rotate-180" : ""
                     }`}
                   >

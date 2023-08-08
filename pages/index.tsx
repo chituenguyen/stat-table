@@ -8,12 +8,7 @@ import Stack from "@mui/material/Stack";
 import columns from "./../const/Group";
 import Acumalation from "./../const/Acumulation";
 import minAppOptions from "./../const/minApp";
-import {
-  Box,
-  FormControl,
-  MenuItem,
-  PaginationItem,
-} from "@mui/material";
+import { Box, FormControl, MenuItem, PaginationItem } from "@mui/material";
 import groupType from "./../const/groupTypeDetail";
 import Tab from "../components/stat_table/Tab/Tab";
 import { FormProvider, useForm } from "react-hook-form";
@@ -34,6 +29,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TableRowLoading from "../components/stat_table/TableRow/TableRowLoading";
+import { ThemeSwitch } from "../components/darkmode/ThemeSwitch";
+import { useTheme } from "next-themes";
 
 interface InitialData {
   data: Array<{
@@ -135,7 +132,6 @@ const IndexPage = () => {
   const [columnDetail, setColumnDetail] = useState(initialData);
 
   const onSubmit = (data: any) => {
-    console.log(data);
     setClearFilter(false);
     const selected = Object.keys(data).filter(
       (key) => data[key] == true || Array.isArray(data[key])
@@ -184,17 +180,35 @@ const IndexPage = () => {
     setFilter("");
     queryClient.refetchQueries("tournamentStatisticsDetail");
   };
+  const { resolvedTheme } = useTheme();
   return (
     <div className="p-6  containerPage font-beVietNam">
       <div className="w-[889px] py-4 px-4 flex flex-col gap-3.5 shadow-custom rounded-2xl min-h-[700px]">
-        <h5 className="text-basic text-base font-bold not-italic">
+        <h5
+          className={` text-base font-bold not-italic ${
+            resolvedTheme === "dark" ? "text-white" : "text-basic"
+          }`}
+        >
           Player Statistics
         </h5>
-        <div className="flex items-center pb-3.5 border-b border-[#cdded] gap-2">
+        <div className="w-fit h-fit absolute top-0 right-0">
+          <ThemeSwitch />
+        </div>
+        <div
+          className={`flex items-center pb-3.5 border-b gap-2 ${
+            resolvedTheme === "dark" ? "border-[#696f75]" : "border-[#cdded]"
+          }`}
+        >
           {columns.map((item) => (
             <button
               key={item.id}
-              className={group === item.name ? "button-active" : "button"}
+              className={
+                group === item.name
+                  ? "button-active"
+                  : group !== item.name && resolvedTheme === "dark"
+                  ? "button-dark"
+                  : "button"
+              }
               onClick={() => handleGroupClick(item.name)}
             >
               {item.name}
@@ -236,7 +250,13 @@ const IndexPage = () => {
                     id="demo-simple-select"
                     value={accumulation}
                     onChange={handleChangeAccumulator}
-                    sx={{ fontSize: "12px", height: 30, width: 170 }}
+                    sx={{
+                      fontSize: "12px",
+                      height: 30,
+                      width: 170,
+                      border: resolvedTheme === "dark" ? "1px solid white" : "",
+                      color: resolvedTheme === "dark" ? "white" : "",
+                    }}
                   >
                     {Acumalation.map((item, index) => (
                       <MenuItem
@@ -269,22 +289,22 @@ const IndexPage = () => {
                 <Position />
                 <PreferredFoot clear={clearFilter} />
               </div>
-                <div>
-                  <div className="flex justify-between">
-                    <Nationality clear={clearFilter} />
-                    <Team clear={clearFilter} />
-                  </div>
-                  {loadingTeamAnndNation ? (
-                    <></>
-                  ) : (
-                    <>
-                      <ShowNationality
-                        nation={apiTeamAndNation?.data.nationalities}
-                      />
-                      <ShowTeam teams={apiTeamAndNation?.data.teams} />
-                    </>
-                  )}
+              <div>
+                <div className="flex justify-between">
+                  <Nationality clear={clearFilter} />
+                  <Team clear={clearFilter} />
                 </div>
+                {loadingTeamAnndNation ? (
+                  <></>
+                ) : (
+                  <>
+                    <ShowNationality
+                      nation={apiTeamAndNation?.data.nationalities}
+                    />
+                    <ShowTeam teams={apiTeamAndNation?.data.teams} />
+                  </>
+                )}
+              </div>
               <Tab
                 tabs={groupType}
                 initialData={initialData}
@@ -380,6 +400,12 @@ const IndexPage = () => {
                     "&.Mui-selected": {
                       backgroundColor: "#2187E5",
                       color: "white",
+                    },
+                    "&.MuiPaginationItem-page": {
+                      color: resolvedTheme === "dark" ? "white" : "",
+                    },
+                    "&.MuiPaginationItem-root": {
+                      color: resolvedTheme === "dark" ? "white" : "",
                     },
                   }}
                 />

@@ -8,7 +8,6 @@ const Appearancess = [
 ];
 
 export default function Appearances ({clear}:{clear:boolean}) {
-  // console.log(clear)
   return (
     <div className="flex items-center gap-2">
       Appearances

@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useTheme } from "next-themes";
 
 type Option = {
   label: string;
@@ -29,6 +30,8 @@ export default function OptionButton({ options, name, clear }: OptionButtonProps
       setAge(options[0].value);
     }
   },)
+  const { resolvedTheme } = useTheme();
+
   return (
     <div>
       <Controller
@@ -46,7 +49,8 @@ export default function OptionButton({ options, name, clear }: OptionButtonProps
                   handleChange(e);
                   field.onChange(e.target.value); // Update the value in the Controller's field
                 }}
-                sx={{fontSize:12, height:30}}
+                sx={{fontSize:12, height:30,border: resolvedTheme === "dark" ? "1px solid white" : "",
+                color: resolvedTheme === "dark" ? "white" : "",}}
               >
                 {options.map((item) => (
                   <MenuItem key={item.value} value={item.value} sx={{fontSize:"12px"}}>
