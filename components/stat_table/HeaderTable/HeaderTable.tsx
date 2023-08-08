@@ -30,7 +30,7 @@ const HeaderRow: React.FC<Props> = ({
   const { resolvedTheme } = useTheme();
 
   return (
-    <tr className={`${resolvedTheme === "dark"?"bg-[#181D26] border-[#696f75] border-opacity-30":"bg-surface-1 border-white "}`}>
+    <tr className={`${resolvedTheme === "dark"?"bg-[#181D26] bg-opacity-10 border-[#696f75] border-opacity-30":"bg-surface-1 border-white "}`}>
       {group === "Detailed"
         ? columnDetail.data.map((column: Column, id: number) => (
             <th

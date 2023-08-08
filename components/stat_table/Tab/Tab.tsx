@@ -60,7 +60,7 @@ const Tab: React.FC<TabProps> = ({
   const { resolvedTheme } = useTheme();
 
   return (
-    <div className={`${resolvedTheme === "dark" ? "bg-[#181D26] text-[#aaa]" : "bg-surface-1"} p-3`}>
+    <div className={`${resolvedTheme === "dark" ? "bg-[#181D26] bg-opacity-10 text-[#aaa]" : "bg-surface-1"} p-3`}>
       <div className="flex gap-3">
         {tabs.map((tab) => (
           <button
@@ -75,7 +75,7 @@ const Tab: React.FC<TabProps> = ({
           </button>
         ))}
       </div>
-      <div className={`p-4 ${resolvedTheme === "dark" ? "bg-[#181D26] text-[#aaa]" : "bg-surface-1"} rounded-b-md mt-4 text-xsm`}>
+      <div className={`p-4 ${resolvedTheme === "dark" ? "bg-[#181D26] bg-opacity-10 text-[#aaa]" : "bg-surface-1"} rounded-b-md mt-4 text-xsm`}>
         {tabs.map((tab) => (
           <div
             key={tab.id}

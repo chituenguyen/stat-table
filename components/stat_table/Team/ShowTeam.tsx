@@ -9,7 +9,7 @@ function ShowTeam(teams: any) {
   const { resolvedTheme } = useTheme();
 
   return (
-    <div className={`${openTeam ? "block" : "hidden"} mt-2 ${resolvedTheme === "dark" ? "bg-[#181D26]" : "bg-surface-1"} p-3 rounded-lg`}>
+    <div className={`${openTeam ? "block" : "hidden"} mt-2 ${resolvedTheme === "dark" ? "bg-[#181D26] bg-opacity-10" : "bg-surface-1"} p-3 rounded-lg`}>
       <InputCheckbox options={teams.teams} name="team" label="Team" />
     </div>
   );

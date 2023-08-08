@@ -15,7 +15,7 @@ function ShowNationality(nation:any) {
   const { resolvedTheme } = useTheme();
 
   return (
-    <div className={`${openNation ? "block" : "hidden"} mt-2 ${resolvedTheme === "dark" ? "bg-[#181D26]" : "bg-surface-1"} p-3 rounded-lg`}>
+    <div className={`${openNation ? "block" : "hidden"} mt-2 ${resolvedTheme === "dark" ? "bg-[#181D26] bg-opacity-10" : "bg-surface-1"} p-3 rounded-lg`}>
       <InputCheckbox options={Nationality} name="nationality" label="Nationality" />
     </div>
   );

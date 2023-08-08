@@ -24,10 +24,10 @@ const TableRow: React.FC<Props> = ({ index, row, columns }) => {
         index % 2 === 1 && resolvedTheme === "light"
           ? "bg-surface-1"
           : index % 2 === 1 && resolvedTheme !== "light"
-          ? "bg-[#181D26]"
+          ? "bg-[#181D26] bg-opacity-10"
           : index % 2 !== 1 && resolvedTheme === "light"
           ? "bg-white"
-          : "bg-[#1C2632]"
+          : "bg-[#1C2632] bg-opacity-30"
       } ${
         resolvedTheme === "dark" ? "border-[#696f75] border-opacity-30" : "border-[#cddded]"
       } border-x border-y`}
